@@ -60,8 +60,10 @@ const Notifications = () => {
           item.urgency === "expired"
       )
       .sort((a: FoodItem, b: FoodItem) => {
-        const urgencyOrder = { expired: 0, urgent: 1, soon: 2, safe: 3 };
-        return urgencyOrder[a.urgency] - urgencyOrder[b.urgency];
+        // Sort by creation time (newer items first) - using ID as timestamp
+        const aTimestamp = parseInt(a.id) || 0;
+        const bTimestamp = parseInt(b.id) || 0;
+        return bTimestamp - aTimestamp; // Newer (higher timestamp) first
       });
   };
 

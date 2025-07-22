@@ -117,15 +117,21 @@ export default function Home() {
     localStorage.setItem("foodItems", JSON.stringify(updatedSavedItems));
   };
 
-  // Count notification items (expires in 2 days or less)
+  // Count notification items (expires in 2 days or less) - only user-added items
   const getNotificationCount = (): number => {
+    const savedItems = JSON.parse(localStorage.getItem("foodItems") || "[]");
     const today = new Date();
-    return foodItems.filter((item) => {
+    today.setHours(0, 0, 0, 0); // Reset time to start of day for accurate comparison
+
+    return savedItems.filter((item: any) => {
       if (!item.expiryDate) return false;
       const expiryDate = new Date(item.expiryDate);
+      expiryDate.setHours(0, 0, 0, 0); // Reset time to start of day
+
       const timeDiff = expiryDate.getTime() - today.getTime();
-      const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-      return daysDiff <= 2; // Expires in 2 days or less
+      const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+      // Count items that are expired, urgent (<=1 day), or soon (<=3 days)
+      return daysDiff <= 3;
     }).length;
   };
 
