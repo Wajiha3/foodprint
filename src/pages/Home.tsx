@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { BellIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { TrashIcon, BellIcon } from "@heroicons/react/24/outline";
 
 type FoodItem = {
   id: string;
@@ -154,7 +154,7 @@ export default function Home() {
 
   return (
     <div className="pb-16">
-      <div className="p-4">
+      <div className="p-4 pt-12">
         {/* Header with notification icon */}
         <div className="flex justify-between items-center mb-2">
           <div>

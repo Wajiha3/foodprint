@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeftIcon, CameraIcon } from "@heroicons/react/24/outline";
 import { BrowserMultiFormatReader } from "@zxing/browser";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 interface ScanQRProps {}
@@ -26,7 +26,8 @@ const ScanQR: React.FC<ScanQRProps> = () => {
     setCodeReader(reader);
 
     return () => {
-      // Cleanup handled in component unmount
+      // Cleanup is handled automatically by the library
+      // No explicit reset needed for newer versions
     };
   }, []);
 
@@ -53,14 +54,8 @@ const ScanQR: React.FC<ScanQRProps> = () => {
   };
 
   const stopScanning = () => {
-    if (codeReader && videoRef.current) {
-      // Stop the video stream
-      const stream = videoRef.current.srcObject as MediaStream;
-      if (stream) {
-        stream.getTracks().forEach((track) => track.stop());
-        videoRef.current.srcObject = null;
-      }
-    }
+    // Stop scanning by setting state
+    // The library handles cleanup automatically
     setIsScanning(false);
   };
 
@@ -156,7 +151,7 @@ const ScanQR: React.FC<ScanQRProps> = () => {
 
   return (
     <div className="pb-16 min-h-screen flex flex-col bg-gray-50">
-      <div className="p-6 flex-grow">
+      <div className="p-6 pt-12 flex-grow">
         {/* Header with Back Button */}
         <div className="flex items-center mb-8">
           <Link to="/scanner" className="mr-4">
