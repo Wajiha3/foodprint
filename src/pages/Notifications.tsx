@@ -17,7 +17,7 @@ type FoodItem = {
 };
 
 const Notifications: React.FC = () => {
-  const [refreshTrigger, setRefreshTrigger] = React.useState(0);
+  const [, setRefreshTrigger] = React.useState(0);
 
   // Delete function
   const handleDeleteItem = (itemId: string) => {
@@ -95,10 +95,7 @@ const Notifications: React.FC = () => {
       });
   };
 
-  const notificationItems = React.useMemo(
-    () => getNotificationItems(),
-    [refreshTrigger]
-  );
+  const notificationItems = getNotificationItems();
 
   const getNotificationMessage = (item: FoodItem): string => {
     if (!item.expiryDate) return `${item.name} needs attention`;

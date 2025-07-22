@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Scanner from "./pages/ScannerNew";
 import Add_Manually from "./pages/Add_Manually";
 import Notifications from "./pages/Notifications";
+import ScanQR from "./pages/ScanQR";
 
 function App() {
   return (
@@ -18,9 +19,10 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/scanner" element={<Scanner />} />
+        {/* eslint-disable-next-line react/jsx-pascal-case */}
         <Route path="/add-manual" element={<Add_Manually />} />
         <Route path="/notifications" element={<Notifications />} />
-        {/* Add other routes as needed */}
+        <Route path="/scan-qr" element={<ScanQR />} />
       </Routes>
     </Router>
   );

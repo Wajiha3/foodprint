@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { QrCodeIcon, DocumentPlusIcon } from "@heroicons/react/24/outline";
 
-interface ScannerProps {}
-
-const Scanner: React.FC<ScannerProps> = () => {
+const Scanner = () => {
   return (
     <div className="pb-16 min-h-screen flex flex-col bg-gray-50">
       <div className="p-6 flex-grow flex flex-col items-center justify-center">
